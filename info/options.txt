@@ -1,0 +1,11 @@
+
+-new:
+  Generates the next-in-the-future keygen:
+
+-upl:
+  Uploads latest-generated keygen:
+
+-activate:
+  Makes previously generated SSH key the current one:
+
+
