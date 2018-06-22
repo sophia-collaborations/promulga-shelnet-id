@@ -39,11 +39,11 @@ sub opto__f_upl {
   foreach $lc_contc (@lc_contb)
   {
     ($lc_typ,$lc_con) = split(/:/,$lc_contc,2);
-    if ( $lc_typ eq "l" )
+    if ( $lc_typ eq "l" ) # Set the remote name of the pub file (should begin with .ssh)
     {
       $lc_rloc = $lc_con;
     }
-    if ( $lc_typ eq "c" )
+    if ( $lc_typ eq "c" ) # Set the remote execution script:
     {
       $lc_rcmd = $lc_con;
     }
