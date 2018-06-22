@@ -61,6 +61,39 @@ sub opto__f_upl {
   system('echo','SHELNET UPLOAD --- NOW WHAT?');
 } &argola::setopt("-upl",\&opto__f_upl);
 
+sub opto__f_there {
+  my $lc_rloc;
+  my $lc_conta;
+  my @lc_contb;
+  my $lc_contc;
+  my $lc_typ;
+  my $lc_con;
+  my $lc_spname;
+  my $lc_wasfound;
+
+  $lc_rloc = "~/.ssh/authorized_keys";
+  $lc_spname = &argola::getrg();
+  $lc_wasfound = 0;
+  
+  $lc_conta = `cat ~/.chobakwrap/promulga-shelnet-id/upscr.txt`;
+  @lc_contb = split(/\n/,$lc_conta);
+  foreach $lc_contc (@lc_contb)
+  {
+    ($lc_typ,$lc_con) = split(/:/,$lc_contc,2);
+    if ( $lc_typ eq "to" )
+    {
+      if ( $lc_con eq $lc_spname ) { $lc_wasfound = 10; }
+    }
+  }
+
+  if ( $lc_wasfound < 5 )
+  {
+    die ( "\nNO SUCH REMOTE ACCOUNT REGISTERED: " . $lc_spname . " :\n\n" );
+  }
+  
+  system('echo',("VERIFIED: '" . $lc_spname . "'" . ': --- NOW WHAT?'));
+} &argola::setopt("-there",\&opto__f_there);
+
 sub opto__f_activate {
   system("mkdir","-p",$hme . "/.ssh");
   system("rm","-rf",$hme . "/.ssh/id_rsa");
