@@ -19,6 +19,7 @@ sub opto__f_new {
   system("rm","-rf",$apphm . "/futurecode",$apphm . "/futurecode.pub");
   system("ssh-keygen","-t","rsa","-q","-f",$apphm . "/futurecode");
   
+  system('echo','NEW KEY-PAIR GENERATED');
 } &argola::setopt("-new",\&opto__f_new);
 
 sub opto__f_upl {
@@ -57,12 +58,14 @@ sub opto__f_upl {
     }
   }
   
+  system('echo','SHELNET UPLOAD --- NOW WHAT?');
 } &argola::setopt("-upl",\&opto__f_upl);
 
 sub opto__f_activate {
   system("mkdir","-p",$hme . "/.ssh");
   system("rm","-rf",$hme . "/.ssh/id_rsa");
   system("cp",$apphm . "/futurecode",$hme . "/.ssh/id_rsa");
+  system('echo','ACTIVATION COMPLETE');
 } &argola::setopt("-activate",\&opto__f_activate);
 
 &argola::runopts;
